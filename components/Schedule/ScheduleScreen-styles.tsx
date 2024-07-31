@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 
+
 export const styles = StyleSheet.create({
   container: {
       flex: 1,
@@ -15,8 +16,6 @@ export const styles = StyleSheet.create({
     ScheduleHeader:{
         justifyContent: 'center',
         alignItems: 'center',
-
-
     },
     Image:{
         position: 'absolute',
@@ -28,6 +27,22 @@ export const styles = StyleSheet.create({
       width: '100%',
       height: 200,
       backgroundColor: '#F6F6F9', // Example style
+      justifyContent: 'center',
+      alignItems: 'center',
     },
+    currentText :{
+        flexDirection:'colum',
+
+        },
+    monthText: {
+        fontSize: 20,
+        color:'#111111',
+
+      },
+  dayText:{
+      fontSize: 30,
+      color:'#111111',
+
+      },
 
 });
