@@ -7,6 +7,7 @@ const currentDate = new Date();
 
 // 월 추출 (0부터 11까지의 값이므로 1을 더합니다)
 const currentMonth = currentDate.getMonth() + 1;
+const currentDay = currentDate.getFullYear();
 
 console.log(`현재 월: ${currentMonth}`);
 
@@ -20,6 +21,10 @@ const ScheduleScreen: React.FC = () => (
                  />
     </View>
     <View style={styles.calender}>
+    <View style={styles.currentText}>
+        <Text style={styles.monthText}> {currentDay}</Text>
+         <Text style={styles.dayText}> {currentMonth}월</Text>
+    </View>
     </View>
   </View>
 );
