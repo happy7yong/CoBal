@@ -66,7 +66,7 @@ const ScheduleScreen: React.FC = () => {
                   <Text style={styles.weekDayText}>{weekDay}</Text>
                 </LinearGradient>
               ) : (
-                <View>
+                <View style={styles.gradient}>
                   <Text style={styles.dayText}>{day}</Text>
                   <Text style={styles.weekDayText}>{weekDay}</Text>
                 </View>
@@ -77,6 +77,7 @@ const ScheduleScreen: React.FC = () => {
       </View>
     );
   };
+
   return (
     <View style={styles.container}>
       <View style={styles.ScheduleHeader}>
@@ -91,21 +92,23 @@ const ScheduleScreen: React.FC = () => {
           <Text style={styles.yearText}>{currentYear}</Text>
           <Text style={styles.dayText}>{currentMonth}월</Text>
           <View style={styles.naviButton}>
-                  <View style={styles.navigationButtons}>
-                    <TouchableOpacity onPress={handlePreviousPage} style={styles.navButton}>
-                      <Text style={styles.navButtonText}>{"<"}</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={handleNextPage} style={styles.navButton}>
-                      <Text style={styles.navButtonText}>{">"}</Text>
-                    </TouchableOpacity>
-                  </View>
-                  </View>
+            <View style={styles.navigationButtons}>
+              <TouchableOpacity onPress={handlePreviousPage} style={styles.navButton}>
+                <Text style={styles.navButtonText}>{"<"}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={handleNextPage} style={styles.navButton}>
+                <Text style={styles.navButtonText}>{">"}</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
         </View>
         <View style={styles.dayCellContainer}>
-        <ScrollView horizontal={true} contentContainerStyle={styles.scrollView}>
-          {renderDays()}
-        </ScrollView>
+          <ScrollView horizontal={true} contentContainerStyle={styles.scrollView}>
+            {renderDays()}
+          </ScrollView>
         </View>
+      </View>
+      <View style={styles.currentContainer}>
       </View>
     </View>
   );

@@ -30,6 +30,7 @@ export const styles = StyleSheet.create({
     width: '100%',
     padding: 20,
     backgroundColor: '#F6F6F9',
+    justifyContent:'center',
   },
   currentText: {
     flexDirection: 'colum',
@@ -39,23 +40,25 @@ export const styles = StyleSheet.create({
   scrollView: {
     flexDirection: 'row',
     justifyContent: 'center',
+    alignItems:'center',
   },
   weekRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   gradient: {
+      flex:1,
       width: '100%',
-      height: '100%',
       justifyContent: 'center',
       alignItems: 'center',
-      borderRadius: 25,
+      borderRadius: 50,
     },
   dayCell: {
-    flex: 1,
-    height: 40,
+    flex:1,
+    flexDirection: 'colum',
     justifyContent: 'center',
     alignItems: 'center',
+
     borderWidth: 1,
     borderRadius:50,
     borderColor: '#E7E7E7',
@@ -74,6 +77,11 @@ export const styles = StyleSheet.create({
     color: '#111111',
     fontWeight: 'bold',
   },
+  weekDayText:{
+      color:'#111111',
+      alignItems:'center',
+        justifyContent:'center',
+      },
     naviButton:{
         justifyContent:'center',
         alignItems:'center',
@@ -81,11 +89,12 @@ export const styles = StyleSheet.create({
         },
   navigationButtons: {
       position: 'absolute',
-      top:-60,
+      top:-75,
     flexDirection: 'row',
     justifyContent: 'space-between',
     width:'100%',
     margin: 10,
+    padding:10,
   },
   navButton: {
     padding: 10,
@@ -94,9 +103,9 @@ export const styles = StyleSheet.create({
   navButtonText: {
     fontSize: 20,
   },
-  dayCellContainer:{
-      justifyContent:'center',
-              alignItems:'center',
 
-      },
+    currentContainer:{
+        height:'100%',
+        backgroundColor:'#111111',
+        },
 });
