@@ -55,6 +55,7 @@ const App: React.FC = () => {
             elevation: 0,
             paddingRight: 40,
             paddingLeft: 40,
+
           },
           tabBarLabelStyle: {
             fontSize: 15,

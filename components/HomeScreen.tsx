@@ -1,7 +1,7 @@
-// components/HomeScreen.tsx
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image } from 'react-native';
 import { styles } from './HomeScreen-styles'; // styles.ts 파일 import
+import { getKoreanTime } from './getKoreanTime'; // getKoreanTime.js 파일의 올바른 경로로 수정
 
 const HomeScreen: React.FC = () => {
   const [currentTime, setCurrentTime] = useState('');
@@ -10,11 +10,11 @@ const HomeScreen: React.FC = () => {
 //현재시각 반영
   useEffect(() => {
     const updateDateTime = () => {
-      const now = new Date();
-      const hours = now.getHours();
-      const minutes = now.getMinutes();
+      const { currentDate: koreaNow } = getKoreanTime();
+      const hours = koreaNow.getHours();
+      const minutes = koreaNow.getMinutes();
       const formattedTime = `${hours >= 12 ? 'PM' : 'AM'} ${hours % 12 || 12}:${minutes < 10 ? `0${minutes}` : minutes}`;
-      const formattedDate = `${now.getMonth() + 1}/${now.getDate()}`; // 월/일 형식
+      const formattedDate = `${koreaNow.getMonth() + 1}/${koreaNow.getDate()}`; // 월/일 형식
 
       setCurrentTime(formattedTime);
       setCurrentDate(formattedDate);
