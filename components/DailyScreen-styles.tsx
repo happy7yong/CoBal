@@ -45,7 +45,8 @@ export const styles = StyleSheet.create({
   dailyInner: {
     backgroundColor: '#F8F8F8',
     top: 0,
-    height: '70%',
+    width:'100%',
+    height: 500,
     alignItems: 'center',
   },
   innerBar: {
@@ -56,7 +57,7 @@ export const styles = StyleSheet.create({
     borderRadius: 20,
   },
   dailyContainer: {
-    margin: 20,
+    margin: 13,
     padding: 1,
     flexDirection: 'row',
     alignItems: 'center',
@@ -64,15 +65,55 @@ export const styles = StyleSheet.create({
   },
   rightContainer: {
     backgroundColor: '#FFFFFF',
-    width: '60%',
+    width: '45%',
+    padding:20,
+    justifyContent:'center',
     borderColor: '#E7E7E7',
-    height: 200,
+    height: 240,
+    borderTopRightRadius : 36,
+    borderBottomRightRadius : 36,
   },
   dailyContentImage: {
-    height: 200,
-    width: '60%',
+    height: 240,
+    width: '45%',
     resizeMode: 'cover',
+    borderTopLeftRadius : 36,
+    borderBottomLeftRadius : 36,
   },
+
+  TimeText:{
+      paddingBottom:1,
+      fontSize:13,
+      },
+  GPSText:{
+      paddingBottom:5,
+      paddingLeft:6,
+      },
+    thinkText1:{
+        color:'#111111',
+        fontSize:15,
+        },
+  thinkText2:{
+      color:'#111111',
+      fontSize:15,
+      fontWeight:'bold',
+      },
+  line:{
+      backgroundColor: '#EAEAEA',
+          width: 130,
+          height: 2,
+          marginTop: 13,
+          marginBottom: 9,
+          borderRadius: 20,
+      },
+  distanceImage:{
+      width:15,
+      resizeMode:'contain',
+      },
+  distance: {
+      flexDirection: 'row', // Row direction for horizontal alignment
+      alignItems: 'center', // Center align items vertically
+    },
   scrollViewContainer: {
     alignItems: 'center',
     height: '120%',
@@ -94,4 +135,42 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     height: 200,
   },
+
+btnInner:{
+    flexDirection:'row',
+    },
+  soundContainer:{
+      width:43,
+      height:43,
+      marginTop:15,
+      borderRadius:50,
+
+      backgroundColor:'#444444',
+      justifyContent:'center',
+      alignItems:'center',
+      },
+
+  recorderContainer:{
+            width:80,
+            height:43,
+            marginTop:15,
+            margin:5,
+            borderRadius:50,
+
+            backgroundColor:'#FFB544',
+            justifyContent:'center',
+            alignItems:'center',
+      },
+
+       SIcon:{
+            width:'40%',
+            resizeMode:'contain',
+            },
+    RIcon:{
+            width:16,
+            height:21,
+            },
+
+       emptyContainer:{
+           },
 });

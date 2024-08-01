@@ -46,12 +46,12 @@ const App: React.FC = () => {
             );
           },
           tabBarStyle: {
-            borderRadius: 42,
+            borderTopLeftRadius: 35,
+            borderTopRightRadius: 35,
             borderColor: '#DEDEDE',
             borderWidth: 1,
             borderTopWidth: 1,
             height: 100,
-            margin: 20,
             elevation: 0,
             paddingRight: 40,
             paddingLeft: 40,

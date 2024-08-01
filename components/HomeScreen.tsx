@@ -70,8 +70,16 @@ const HomeScreen: React.FC = () => {
                 style={styles.SunFlowerImage}
               />
               <View style={styles.dailyText}>
-                <Text style={styles.dailyText.Text}>해바라기를 선물로 받아 봤으면 했어요.</Text>
+                <Text style={styles.dailyTextFont}>해바라기를 선물로 받아 봤으면 했어요.</Text>
               </View>
+            </View>
+
+            <View style={styles.LikeContainer}>
+                <Image
+                     source={require('../assets/png/favorite.png')} // 올바른 상대 경로로 변경
+                     style={styles.favoriteHeart}
+                />
+                <Text>를 눌러보세요!</Text>
             </View>
           </View>
         </View>
