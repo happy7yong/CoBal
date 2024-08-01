@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
-const { width, height } = Dimensions.get('window'); // 화면의 너비와 높이를 가져옴
+const { width, height } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
   dailyScreenContainer: {
@@ -9,28 +9,30 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
   },
+  flatListContainer: {
+    height: 400, // FlatList의 높이를 조정
+  },
   imageContainer: {
-     width : 100,
-     height: 300,
+    width,
+    height: '100%', // 부모의 높이를 채우도록 설정
     justifyContent: 'center',
     alignItems: 'center',
   },
   image: {
     width: '100%',
-    resizeMode: 'cover', // 이미지 비율을 유지하며 컨테이너에 맞춤
+    height: '100%', // 부모의 높이를 채우도록 설정
+    resizeMode: 'cover',
   },
-
   indicatorContainer: {
     position: 'absolute',
-    top:320,
-
+    top: 350, // FlatList 높이에 따라 조정
+     left: width / 2 - 35, // X축 중앙에 배치 (indicator 너비에 따라 조정)
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-
-    backgroundColor:'#444444',
-    opacity:0.8,
-    padding:5,
+    backgroundColor: '#444444',
+    opacity: 0.8,
+    padding: 5,
     borderRadius: 50,
   },
   indicator: {
@@ -38,52 +40,58 @@ export const styles = StyleSheet.create({
     height: 8,
     borderRadius: 10,
     margin: 5,
+
+  },
+  dailyInner: {
+    backgroundColor: '#F8F8F8',
+    top: 0,
+    height: '70%',
+    alignItems: 'center',
+  },
+  innerBar: {
+    backgroundColor: '#DBDBDB',
+    width: 40,
+    height: 5,
+    marginTop: 13,
+    borderRadius: 20,
   },
   dailyContainer: {
-      width: '90%',
-      borderRadius: 42,
-      borderColor: '#E7E7E7',
-      borderWidth: 1.5,
-      height: 200,
-
-      margin:10,
-      backgroundColor: '#FFFFFF',
-      padding: 40,
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-
+    margin: 20,
+    padding: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  rightContainer: {
+    backgroundColor: '#FFFFFF',
+    width: '60%',
+    borderColor: '#E7E7E7',
+    height: 200,
+  },
+  dailyContentImage: {
+    height: 200,
+    width: '60%',
+    resizeMode: 'cover',
+  },
   scrollViewContainer: {
     alignItems: 'center',
-    height:'150%',
+    height: '120%',
   },
-
   flatList: {
-      flex: 1,
-    },
-    flatListContent: {
-      flexGrow: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    overlayContainer: {
-      position: 'absolute',
-      bottom: 0,
-      left: 0,
-      right: 0,
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: 200, // 초기 높이 설정
-    },
-    absolute: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      bottom: 0,
-      right: 0,
-    },
-
-
-
+    flex: 1,
+  },
+  flatListContent: {
+    flexGrow: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  overlayContainer: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 200,
+  },
 });

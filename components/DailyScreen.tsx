@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
-import { View, Image, FlatList, Dimensions, Animated, Text, ScrollView, StyleSheet } from 'react-native';
-import { styles } from './DailyScreen-styles'
-
+import { View, Image, FlatList, Dimensions, Animated, Text, ScrollView } from 'react-native';
+import { styles } from './DailyScreen-styles';
 
 const images = [
   require('../assets/png/dailyimage1.png'),
@@ -9,7 +8,7 @@ const images = [
   require('../assets/png/dailyimage3.png'),
 ];
 
-const { width, height } = Dimensions.get('window'); // 화면의 너비와 높이 가져오기
+const { width } = Dimensions.get('window');
 
 const DailyScreen: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -27,11 +26,12 @@ const DailyScreen: React.FC = () => {
 
   const renderIndicators = () => {
     return (
+
       <View style={styles.indicatorContainer}>
         {images.map((_, index) => {
           const indicatorWidth = animatedValue.interpolate({
             inputRange: [index - 1, index, index + 1],
-            outputRange: [8, 16, 8],
+            outputRange: [7, 16, 7],
             extrapolate: 'clamp',
           });
 
@@ -54,32 +54,41 @@ const DailyScreen: React.FC = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.scrollViewContainer}>
-      <FlatList
-        data={images}
-        horizontal
-        pagingEnabled
-        showsHorizontalScrollIndicator={false}
-        onScroll={onScroll}
-        renderItem={({ item }) => (
-          <View style={[styles.imageContainer, { width }]}>
-            <Image source={item} style={styles.image} />
+      <View style={styles.flatListContainer}>
+        <FlatList
+          data={images}
+          horizontal
+          pagingEnabled
+          showsHorizontalScrollIndicator={false}
+          onScroll={onScroll}
+          renderItem={({ item }) => (
+            <View style={[styles.imageContainer, { width }]}>
+              <Image source={item} style={styles.image} />
+            </View>
+          )}
+          keyExtractor={(item, index) => index.toString()}
+        />
+
+        {renderIndicators()}
+
+      </View>
+      <View style={styles.dailyInner}>
+        <View style={styles.innerBar}></View>
+        <View style={styles.dailyContainer}>
+          <Image source={require('../assets/png/Sunflower-image.png')} style={styles.dailyContentImage} />
+          <View style={styles.rightContainer}>
+            <Text>Content Below FlatList</Text>
           </View>
-        )}
-        keyExtractor={(item, index) => index.toString()}
-      />
-      {renderIndicators()}
-      <View style={styles.dailyContainer}>
-        <Text>Content Below FlatList</Text>
-      </View>
-      <View style={styles.dailyContainer}>
-        <Text>More Content Below</Text>
-      </View>
-      <View style={styles.dailyContainer}>
-        <Text>Additional Content Below</Text>
+        </View>
+        <View style={styles.dailyContainer}>
+          <Image source={require('../assets/png/Sunflower-image.png')} style={styles.dailyContentImage} />
+          <View style={styles.rightContainer}>
+            <Text>Content Below FlatList</Text>
+          </View>
+        </View>
       </View>
     </ScrollView>
   );
 };
-
 
 export default DailyScreen;

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { styles } from './ScheduleScreen-styles';
 import LinearGradient from 'react-native-linear-gradient';
-import DayCell from './DayCell';
 import DayDetail from './DayDetail';
 import { getKoreanTime } from '../getKoreanTime';
 
@@ -85,8 +84,8 @@ const ScheduleScreen: React.FC = () => {
   };
 
   const getDayData = (day: number) => {
-    // 여기에 클릭된 날짜에 대한 데이터를 반환하도록 합니다.
-    // 실제로는 서버나 다른 소스에서 데이터를 가져올 수 있습니다.
+    // 클릭된 날짜에 대한 데이터를 반환하도록 합니다.
+    // 여기서는 예시로 문자열을 반환합니다. 실제 데이터는 서버나 다른 소스에서 가져올 수 있습니다.
     return `데이터: ${day}일`;
   };
 
@@ -122,13 +121,10 @@ const ScheduleScreen: React.FC = () => {
       </View>
       <View style={styles.currentContainer}>
         {selectedDay !== null ? (
-          <DayDetail day={selectedDay} />
+          <DayDetail day={selectedDay} dayData={dayData} /> // 선택한 날짜의 데이터를 전달
         ) : (
-          <Text style={styles.currentContainerText}>
-            날짜를 선택해주세요
-          </Text>
+          <Text style={styles.currentContainerText}>날짜를 선택해주세요</Text>
         )}
-
       </View>
     </View>
   );
