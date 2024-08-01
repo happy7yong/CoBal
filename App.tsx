@@ -8,7 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './components/HomeScreen';
 import DailyScreen from './components/DailyScreen';
 import ScheduleScreen from './components/Schedule/ScheduleScreen';
-import TargetScreen from './components/TargetScreen'; // Import TargetScreen
+import TargetScreen from './components/TargetScreen';
 
 import { styles } from './components/styles';
 
@@ -19,7 +19,11 @@ const DailyStack = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Daily" component={DailyScreen} />
-      <Stack.Screen name="Target" component={TargetScreen} />
+      <Stack.Screen
+        name="Target"
+        component={TargetScreen}
+        options={{ tabBarStyle: { display: 'none' } }}
+      />
     </Stack.Navigator>
   );
 };
