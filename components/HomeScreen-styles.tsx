@@ -216,5 +216,30 @@ export const styles = StyleSheet.create({
            width:'100%',
             resizeMode: 'contain',
 
-           }
+           },
+       recognizedText:{
+           width:'100%',
+           height:'100%',
+           fontSize:10,
+           },
+       voiceImage: {
+           width: 50,
+           height: 50,
+         },
+         recordButton: {
+           width: 70,
+           height: 70,
+           justifyContent: 'center',
+           alignItems: 'center',
+           backgroundColor: '#f44336',
+           borderRadius: 30,
+           marginVertical: 20,
+           top:100,
+           left:-100,
+         },
+         recordButtonText: {
+           color: '#fff',
+           fontSize: 16,
+           fontWeight: 'bold',
+         },
 });

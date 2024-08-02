@@ -121,10 +121,11 @@ const TargetScreen: React.FC = () => {
 
   const handleVoice = () => {
     console.log('음성을 보낼까요?');
+
   };
 
   const handleLike = () =>{
-    console.log('좋아요를 누르시겠습니까?');
+    console.log('좋아요를 누르셨습니다');
     };
 
   const handleSchedule = () =>{
