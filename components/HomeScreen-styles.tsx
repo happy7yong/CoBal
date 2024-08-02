@@ -210,4 +210,11 @@ export const styles = StyleSheet.create({
            resizeMode:'contain',
            margin:2,
            },
+
+       voiceBtn:{
+
+           width:'100%',
+            resizeMode: 'contain',
+
+           }
 });

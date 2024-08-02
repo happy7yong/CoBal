@@ -1,30 +1,41 @@
+// components/HomeScreen.tsx
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, Button } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
+import Voice from 'react-native-voice';
 import { styles } from './HomeScreen-styles'; // styles.ts 파일 import
-import { getKoreanTime } from './getKoreanTime'; // getKoreanTime.js 파일의 올바른 경로로 수정
 
-const HomeScreen: React.FC = ({ navigation }) => {
-  const [currentTime, setCurrentTime] = useState('');
-  const [currentDate, setCurrentDate] = useState('');
+const HomeScreen: React.FC = () => {
+  const [recognizedText, setRecognizedText] = useState<string>('');
+  const [isListening, setIsListening] = useState<boolean>(false);
 
-  // 현재 시각 반영
   useEffect(() => {
-    const updateDateTime = () => {
-      const { currentDate: koreaNow } = getKoreanTime();
-      const hours = koreaNow.getHours();
-      const minutes = koreaNow.getMinutes();
-      const formattedTime = `${hours >= 12 ? 'PM' : 'AM'} ${hours % 12 || 12}:${minutes < 10 ? `0${minutes}` : minutes}`;
-      const formattedDate = `${koreaNow.getMonth() + 1}/${koreaNow.getDate()}`; // 월/일 형식
-
-      setCurrentTime(formattedTime);
-      setCurrentDate(formattedDate);
+    // Voice 설정 초기화
+    Voice.onSpeechResults = (event) => {
+      const results = event.value || [];
+      setRecognizedText(results[0] || '');
     };
 
-    updateDateTime();
-    const intervalId = setInterval(updateDateTime, 60000); // 1분마다 업데이트
+    Voice.onSpeechStart = () => {
+      setIsListening(true);
+    };
 
-    return () => clearInterval(intervalId); // 컴포넌트가 언마운트될 때 인터벌을 클리어
+    Voice.onSpeechEnd = () => {
+      setIsListening(false);
+    };
+
+    return () => {
+      // 컴포넌트 언마운트 시 리스너 제거
+      Voice.destroy().then(Voice.removeAllListeners);
+    };
   }, []);
+
+  const handleButtonPress = async () => {
+    if (isListening) {
+      await Voice.stopRecognizing();
+    } else {
+      await Voice.start('ko-KR'); // 한국어로 음성 인식 시작
+    }
+  };
 
   return (
     <View style={styles.homeScreenContainer}>
@@ -35,10 +46,13 @@ const HomeScreen: React.FC = ({ navigation }) => {
       <View style={styles.textContainer}>
         <Text style={styles.mainText}>윤애남님은</Text>
         <Text style={styles.subText}>기분이 좋아요</Text>
-        <Image
-          source={require('../assets/png/voice.png')} // 올바른 상대 경로로 변경
-          style={styles.voiceImage}
-        />
+        <TouchableOpacity style={styles.voiceBtn} onPress={handleButtonPress}>
+          <Image
+            source={require('../assets/png/voice.png')} // 올바른 상대 경로로 변경
+            style={styles.voiceImage}
+          />
+        </TouchableOpacity>
+        <Text style={styles.recognizedText}>{recognizedText}</Text>
       </View>
       <Image
         source={require('../assets/png/homealarm.png')} // 올바른 상대 경로로 변경
@@ -59,8 +73,8 @@ const HomeScreen: React.FC = ({ navigation }) => {
       </View>
       <View style={styles.dailyContainer}>
         <View style={styles.dailyTextContainer}>
-          <Text style={styles.dailyTextTime}>{currentTime}</Text>
-          <Text style={styles.dailyTextDate}>{currentDate}</Text>
+          <Text style={styles.dailyTextTime}>AM 10:00</Text>
+          <Text style={styles.dailyTextDate}>07/29</Text>
         </View>
         <View style={styles.inner}>
           <View style={styles.dailyInner}>
@@ -72,13 +86,6 @@ const HomeScreen: React.FC = ({ navigation }) => {
               <View style={styles.dailyText}>
                 <Text style={styles.dailyTextFont}>해바라기를 선물로 받아 봤으면 했어요.</Text>
               </View>
-            </View>
-            <View style={styles.LikeContainer}>
-              <Image
-                source={require('../assets/png/favorite.png')} // 올바른 상대 경로로 변경
-                style={styles.favoriteHeart}
-              />
-              <Text>를 눌러보세요!</Text>
             </View>
           </View>
         </View>
