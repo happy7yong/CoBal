@@ -147,38 +147,48 @@ export const styles = StyleSheet.create({
 
  thisSchedule: {
      position:'absolute',
-    borderRadius: 10,
+    borderRadius: 16,
     overflow: 'hidden', // 블러와 내부 요소가 경계를 벗어나지 않도록
+    margin:20,
+    marginTop:30,
+
   },
   thisScheduleContainer: {
     flex: 1,
     position: 'relative', // 자식 요소의 위치를 상대적으로 설정
     justifyContent: 'center',
     alignItems: 'center',
+     backgroundColor: 'rgba(246, 246, 246, 0.3)',
   },
   blurView: {
     ...StyleSheet.absoluteFillObject, // 부모 View를 완전히 채우도록 설정
+    padding:10,
   },
   blur :{
-    width: 200, // 적절한 너비와 높이 설정
-    height: 100,
-    margin: 10,
+    width:300, // 적절한 너비와 높이 설정
+    height:80,
+    padding:10,
   },
   textInner: {
     position: 'absolute', // BlurView 위에 배치하기 위해 absolute 위치 지정
-//     top: 0,
-//     left: 0,
-//     right: 0,
-//     bottom: 0,
     justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: 'colum',
+    padding:10,
     width:'100%',
     height:'100%',
   },
- text: {
-     position: 'absolute', // BlurView 위에 배치하기 위해 absolute 위치 지정
-     color: 'black',
-     fontSize: 18,
+ textTime: {
+//      position: 'absolute', // BlurView 위에 배치하기 위해 absolute 위치 지정
+
+     fontSize: 15,
 //      textAlign: 'center',
    },
+   textContent:{
+       fontWeight:'bold',
+       color: '#323232',
+//        position:'absolute',
+    fontSize:17
+
+       }
+
 });

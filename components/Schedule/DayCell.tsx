@@ -1,3 +1,5 @@
+// DayCell.tsx
+
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
@@ -12,12 +14,9 @@ interface DayCellProps {
 
 const DayCell: React.FC<DayCellProps> = ({ day, weekDay, isCurrentDay, onPress }) => {
   return (
-    <BoxShadow style={styles.dayCell}>
+    <View style={styles.dayCell}>
       {isCurrentDay ? (
-        <LinearGradient
-          colors={['#FFAF36', '#FF8A00']}
-          style={styles.gradient}
-        >
+        <LinearGradient colors={['#FFAF36', '#FF8A00']} style={styles.gradient}>
           <Text style={styles.dayText}>{day}</Text>
           <Text style={styles.weekDayText}>{weekDay}</Text>
         </LinearGradient>
@@ -29,7 +28,7 @@ const DayCell: React.FC<DayCellProps> = ({ day, weekDay, isCurrentDay, onPress }
           </View>
         </TouchableOpacity>
       )}
-    </BoxShadow>
+    </View>
   );
 };
 

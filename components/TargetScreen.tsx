@@ -197,14 +197,17 @@ const TargetScreen: React.FC = () => {
       </View>
         <TouchableOpacity style={styles.thisSchedule} onPress={handleSchedule}>
             <View style={styles.thisScheduleContainer}>
-                   <BlurView
-                          style={styles.blurView}
-                          blurType="light"
-                          blurAmount={10}
-                          reducedTransparencyFallbackColor="rgba(246, 246, 246, 0.5)"
+                    <View style={styles.blur}>
+                       <BlurView
+                              style={styles.blurView}
+                              blurType="light"
+                              blurAmount={10}
+                              reducedTransparencyFallbackColor="rgba(246, 246, 246, 0.5)"
                         />
+                    </View>
                     <View style={styles.textInner}>
-                      <Text style={styles.text}>여기 내용이 들어갑니다.</Text>
+                      <Text style={styles.textTime}>10:00~11:00</Text>
+                      <Text style={styles.textContent}>박막례 할머니와 고구마밭 데이트</Text>
                     </View>
              </View>
         </TouchableOpacity>

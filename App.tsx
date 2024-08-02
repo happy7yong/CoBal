@@ -61,6 +61,7 @@ const App: React.FC = () => {
           tabBarStyle: {
             borderTopLeftRadius: 35,
             borderTopRightRadius: 35,
+            borderTopWidth:1,
             borderColor: '#DEDEDE',
             borderWidth: 1,
             height: 100,

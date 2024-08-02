@@ -17,7 +17,7 @@ const daysInMonth = Array.from({ length: 31 }, (_, i) => i + 1);
 const ScheduleScreen: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [selectedDay, setSelectedDay] = useState<number | null>(null);
-  const [dayData, setDayData] = useState<string | null>(null);
+  const [appointments, setAppointments] = useState<{ [key: number]: string[] }>({});
 
   const itemsPerPage = 6;
   const totalPages = Math.ceil(daysInMonth.length / itemsPerPage);
@@ -36,7 +36,20 @@ const ScheduleScreen: React.FC = () => {
 
   const handleDayPress = (day: number) => {
     setSelectedDay(day);
-    setDayData(getDayData(day)); // 선택한 날짜의 데이터를 설정합니다.
+  };
+
+  const handleAddAppointment = (day: number, newAppointment: string) => {
+    setAppointments((prev) => ({
+      ...prev,
+      [day]: [...(prev[day] || []), newAppointment],
+    }));
+  };
+
+  const handleDeleteAppointment = (day: number, index: number) => {
+    setAppointments((prev) => ({
+      ...prev,
+      [day]: prev[day].filter((_, i) => i !== index),
+    }));
   };
 
   const renderDays = () => {
@@ -50,6 +63,7 @@ const ScheduleScreen: React.FC = () => {
           const date = new Date(currentYear, currentMonth - 1, day);
           const weekDay = daysOfWeek[date.getDay()];
           const isCurrentDay = day === currentDay;
+          const isSelectedDay = day === selectedDay;
 
           return (
             <TouchableOpacity
@@ -58,6 +72,7 @@ const ScheduleScreen: React.FC = () => {
               style={[
                 styles.dayCell,
                 isCurrentDay ? styles.currentDayCell : {},
+                isSelectedDay ? styles.selectedDayCell : {},
               ]}
             >
               {isCurrentDay ? (
@@ -81,12 +96,6 @@ const ScheduleScreen: React.FC = () => {
         })}
       </View>
     );
-  };
-
-  const getDayData = (day: number) => {
-    // 클릭된 날짜에 대한 데이터를 반환하도록 합니다.
-    // 여기서는 예시로 문자열을 반환합니다. 실제 데이터는 서버나 다른 소스에서 가져올 수 있습니다.
-    return `데이터: ${day}일`;
   };
 
   return (
@@ -121,7 +130,12 @@ const ScheduleScreen: React.FC = () => {
       </View>
       <View style={styles.currentContainer}>
         {selectedDay !== null ? (
-          <DayDetail day={selectedDay} dayData={dayData} /> // 선택한 날짜의 데이터를 전달
+          <DayDetail
+            day={selectedDay}
+            appointments={appointments[selectedDay] || []}
+            onAddAppointment={(newAppointment) => handleAddAppointment(selectedDay, newAppointment)}
+            onDeleteAppointment={(index) => handleDeleteAppointment(selectedDay, index)}
+          />
         ) : (
           <Text style={styles.currentContainerText}>날짜를 선택해주세요</Text>
         )}

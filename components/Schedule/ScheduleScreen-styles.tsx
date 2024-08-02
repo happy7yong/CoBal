@@ -67,9 +67,14 @@ export const styles = StyleSheet.create({
     height: 80,
     marginHorizontal: 5,
 //     elevation: 2,
+
   },
+  selectedDayCell: {
+      borderColor: '#FF8A00', // 선택된 날짜의 border 색상
+        borderWidth:2
+    },
   yearText: {
-    fontSize: 18,
+    fontSize: 17,
     color: '#111111',
   },
   dayText: {
