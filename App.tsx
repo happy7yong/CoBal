@@ -15,15 +15,12 @@ import { styles } from './components/styles';
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
+// Stack Navigator for Daily Screen and Target Screen
 const DailyStack = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Daily" component={DailyScreen} />
-      <Stack.Screen
-        name="Target"
-        component={TargetScreen}
-        options={{ tabBarStyle: { display: 'none' } }}
-      />
+      <Stack.Screen name="Target" component={TargetScreen} />
     </Stack.Navigator>
   );
 };
@@ -66,7 +63,6 @@ const App: React.FC = () => {
             borderTopRightRadius: 35,
             borderColor: '#DEDEDE',
             borderWidth: 1,
-            borderTopWidth: 1,
             height: 100,
             elevation: 0,
             paddingRight: 40,
@@ -76,7 +72,6 @@ const App: React.FC = () => {
             fontSize: 15,
           },
           tabBarItemStyle: {
-            width: 20,
             padding: 24,
           },
           headerShown: false,

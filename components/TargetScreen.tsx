@@ -1,9 +1,22 @@
-// components/TargetScreen.tsx
-import React, { useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, Animated, Easing, Image, Dimensions } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import React, { useEffect, useRef, useState } from 'react';
+import {
+  View,
+  TextInput,
+  TouchableOpacity,
+  Text,
+  Animated,
+  Easing,
+  Image,
+  Dimensions,
+  TouchableWithoutFeedback,
+  StyleSheet
+} from 'react-native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import { styles } from './TargetScreen-styles';
+import { BlurView } from '@react-native-community/blur';
 
-const { width, height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
+const { width: screenWidth } = Dimensions.get('window');
 
 const images = [
   require('../assets/png/dailyimage1.png'),
@@ -14,75 +27,192 @@ const images = [
 const TargetScreen: React.FC = () => {
   const navigation = useNavigation();
   const widthAnim = useRef(new Animated.Value(0)).current;
-  const scrollX = useRef(new Animated.Value(0)).current;
+  const scrollRef = useRef<Animated.FlatList>(null);
+  const [inputValue, setInputValue] = useState('');
+  const [isFocused, setIsFocused] = useState<boolean>(false);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      const parentNavigator = navigation.getParent();
+      if (parentNavigator) {
+        parentNavigator.setOptions({
+          tabBarStyle: { display: 'none' }
+        });
+
+        return () => {
+          parentNavigator.setOptions({
+            tabBarStyle: {
+              display: 'flex',
+              borderTopLeftRadius: 35,
+              borderTopRightRadius: 35,
+              borderColor: '#DEDEDE',
+              borderWidth: 1,
+              height: 100,
+              elevation: 0,
+              paddingRight: 40,
+              paddingLeft: 40,
+            }
+          });
+        };
+      }
+    }, [navigation])
+  );
 
   useEffect(() => {
-    Animated.timing(widthAnim, {
-      toValue: 100,
-      duration: 5000,
-      easing: Easing.linear,
-      useNativeDriver: false,
-    }).start();
+    let currentIndex = 0;
+    const numberOfImages = images.length;
+    const imageSwitchInterval = 5000; // 5 seconds
+    const totalDuration = imageSwitchInterval * numberOfImages; // Total duration
+    const progressBarWidth = screenWidth * 0.95;
 
-    const timer = setTimeout(() => {
-      navigation.goBack();
-    }, 5000);
+    const animateProgressBar = () => {
+      widthAnim.setValue(0);
+      Animated.timing(widthAnim, {
+        toValue: progressBarWidth,
+        duration: imageSwitchInterval,
+        easing: Easing.linear,
+        useNativeDriver: false,
+      }).start();
+    };
 
-    return () => clearTimeout(timer);
+    const switchImage = (index: number) => {
+      if (index >= numberOfImages) {
+        return; // End of images
+      }
+
+      animateProgressBar();
+
+      scrollRef.current?.scrollToOffset({
+        offset: index * width,
+        animated: true,
+      });
+
+      // Move to the next image after the current animation duration
+      setTimeout(() => switchImage(index + 1), imageSwitchInterval);
+    };
+
+    switchImage(currentIndex);
+
+    // Navigate to '일상' tab after the total animation duration
+    const timeoutId = setTimeout(() => {
+      navigation.reset({
+        index: 0,
+        routes: [{ name: '일상' }],
+      });
+    }, totalDuration);
+
+    return () => {
+      widthAnim.stopAnimation();
+      clearTimeout(timeoutId);
+    };
   }, [navigation, widthAnim]);
 
+  const handleTouch = () => {
+    navigation.reset({
+      index: 0,
+      routes: [{ name: '일상' }],
+    });
+  };
+
+  const handleSend = () => {
+    console.log('Input Value:', inputValue);
+    // You can also do other actions with the inputValue here
+  };
+
+  const handleVoice = () => {
+    console.log('음성을 보낼까요?');
+  };
+
+  const handleLike = () =>{
+    console.log('좋아요를 누르시겠습니까?');
+    };
+
+  const handleSchedule = () =>{
+    console.log('스케줄을 확인합니다.');
+  };
+
+
   return (
+    <TouchableWithoutFeedback onPress={handleTouch}>
     <View style={styles.container}>
-      <View style={styles.progressBarContainer}>
-        <Animated.View
-          style={[
-            styles.progressBar,
-            {
-              width: widthAnim.interpolate({
-                inputRange: [0, 100],
-                outputRange: ['0%', '100%'],
-              }),
-            },
-          ]}
+      <View style={styles.container}>
+        <View style={styles.progressBarContainer}>
+          <Animated.View
+            style={[
+              styles.progressBar,
+              {
+                width: widthAnim,
+              },
+            ]}
+          />
+        </View>
+        <Animated.FlatList
+          ref={scrollRef}
+          data={images}
+          horizontal
+          pagingEnabled
+          scrollEnabled={false}
+          showsHorizontalScrollIndicator={false}
+          renderItem={({ item }) => (
+            <View style={styles.imageContainer}>
+              <Image source={item} style={styles.image} />
+            </View>
+          )}
+          keyExtractor={(item, index) => index.toString()}
         />
+        <View style={styles.whiteBoxContainer}>
+           {!isFocused && !inputValue ? (
+              <Text style={styles.placeholderText}>윤애남님에게{"\n"}답장을 남겨보세요</Text>
+           ) : null}
+          <TextInput
+                    style={styles.textInput}
+                    value={inputValue}
+                    onChangeText={(text: string) => setInputValue(text)}
+                    onFocus={() => setIsFocused(true)}
+                    onBlur={() => setIsFocused(false)}
+                  />
+          <View style={styles.BtnContainer}>
+              <TouchableOpacity style={styles.customButton} onPress={handleSend}>
+                    <Image
+                        source={require('../assets/png/sendIcon.png')} // 올바른 상대 경로로 변경
+                        style={styles.sendIcons}
+                     />
+              </TouchableOpacity>
+          </View>
+        </View>
       </View>
-      <Animated.FlatList
-        data={images}
-        horizontal
-        pagingEnabled
-        showsHorizontalScrollIndicator={false}
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { x: scrollX } } }],
-          { useNativeDriver: false }
-        )}
-        renderItem={({ item }) => (
-          <Image source={item} style={styles.image} />
-        )}
-        keyExtractor={(item, index) => index.toString()}
-      />
+      <View style={styles.sendOption}>
+                  <TouchableOpacity style={styles.LikeBtn} onPress={handleLike}>
+                              <Image
+                                  source={require('../assets/png/favorite_Line.png')} // 올바른 상대 경로로 변경
+                                  style={styles.Icons}
+                               />
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.VoiceBtn} onPress={handleVoice}>
+                                                <Image
+                                                    source={require('../assets/png/recorder.png')} // 올바른 상대 경로로 변경
+                                                    style={styles.Icons}
+                                                 />
+                                    </TouchableOpacity>
+      </View>
+        <TouchableOpacity style={styles.thisSchedule} onPress={handleSchedule}>
+            <View style={styles.thisScheduleContainer}>
+                   <BlurView
+                          style={styles.blurView}
+                          blurType="light"
+                          blurAmount={10}
+                          reducedTransparencyFallbackColor="rgba(246, 246, 246, 0.5)"
+                        />
+                    <View style={styles.textInner}>
+                      <Text style={styles.text}>여기 내용이 들어갑니다.</Text>
+                    </View>
+             </View>
+        </TouchableOpacity>
     </View>
+    </TouchableWithoutFeedback>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  progressBarContainer: {
-    position: 'absolute',
-    top: 0,
-    width: '100%',
-    height: 5,
-    backgroundColor: '#e0e0df',
-  },
-  progressBar: {
-    height: '100%',
-    backgroundColor: 'tomato',
-  },
-  image: {
-    width,
-    height,
-  },
-});
+
 
 export default TargetScreen;

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { View, Image, FlatList, Dimensions, Animated, Text, ScrollView, PanResponder, TouchableOpacity } from 'react-native';
+import { View, Image, FlatList, Dimensions, Animated, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { styles } from './DailyScreen-styles';
 
@@ -15,42 +15,7 @@ const DailyScreen: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const animatedValue = useRef(new Animated.Value(0)).current;
   const navigation = useNavigation();
-  const clickTimer = useRef<NodeJS.Timeout | null>(null);
-  const panResponder = useRef(
-    PanResponder.create({
-      onStartShouldSetPanResponder: () => true,
-      onStartShouldSetPanResponderCapture: () => true,
-      onPanResponderGrant: () => {
-        // Start a timer when the user presses down
-        clickTimer.current = setTimeout(() => {
-          // Move to TargetScreen if the press is long enough
-          navigation.navigate('Target');
-        }, 200); // 200ms delay before considering it a click
-      },
-      onPanResponderMove: () => {
-        // If user starts moving, cancel the click action
-        if (clickTimer.current) {
-          clearTimeout(clickTimer.current);
-          clickTimer.current = null;
-        }
-      },
-      onPanResponderRelease: () => {
-        // If the press didn't move, it's considered a click
-        if (clickTimer.current) {
-          clearTimeout(clickTimer.current);
-          clickTimer.current = null;
-          navigation.navigate('Target');
-        }
-      },
-      onPanResponderTerminate: () => {
-        // Handle when the responder is interrupted
-        if (clickTimer.current) {
-          clearTimeout(clickTimer.current);
-          clickTimer.current = null;
-        }
-      },
-    })
-  ).current;
+  const scrollViewRef = useRef<ScrollView>(null);
 
   const onScroll = (event: any) => {
     const index = Math.round(event.nativeEvent.contentOffset.x / width);
@@ -60,6 +25,12 @@ const DailyScreen: React.FC = () => {
       duration: 300,
       useNativeDriver: false,
     }).start();
+  };
+
+  const handlePress = (index: number) => {
+    if (index === currentIndex) {
+      navigation.navigate('Target');
+    }
   };
 
   const renderIndicators = () => {
@@ -90,8 +61,8 @@ const DailyScreen: React.FC = () => {
   };
 
   return (
-    <View {...panResponder.panHandlers} style={styles.scrollViewContainer}>
-      <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+    <View style={styles.scrollViewContainer}>
+      <ScrollView contentContainerStyle={styles.scrollViewContainer} ref={scrollViewRef}>
         <View style={styles.flatListContainer}>
           <FlatList
             data={images}
@@ -99,10 +70,12 @@ const DailyScreen: React.FC = () => {
             pagingEnabled
             showsHorizontalScrollIndicator={false}
             onScroll={onScroll}
-            renderItem={({ item }) => (
-              <View style={[styles.imageContainer, { width }]}>
-                <Image source={item} style={styles.image} />
-              </View>
+            renderItem={({ item, index }) => (
+              <TouchableOpacity onPress={() => handlePress(index)} activeOpacity={1}>
+                <View style={[styles.imageContainer, { width }]}>
+                  <Image source={item} style={styles.image} />
+                </View>
+              </TouchableOpacity>
             )}
             keyExtractor={(item, index) => index.toString()}
           />

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, Button } from 'react-native';
 import { styles } from './HomeScreen-styles'; // styles.ts 파일 import
 import { getKoreanTime } from './getKoreanTime'; // getKoreanTime.js 파일의 올바른 경로로 수정
 
-const HomeScreen: React.FC = () => {
+const HomeScreen: React.FC = ({ navigation }) => {
   const [currentTime, setCurrentTime] = useState('');
   const [currentDate, setCurrentDate] = useState('');
 
-//현재시각 반영
+  // 현재 시각 반영
   useEffect(() => {
     const updateDateTime = () => {
       const { currentDate: koreaNow } = getKoreanTime();
@@ -73,13 +73,12 @@ const HomeScreen: React.FC = () => {
                 <Text style={styles.dailyTextFont}>해바라기를 선물로 받아 봤으면 했어요.</Text>
               </View>
             </View>
-
             <View style={styles.LikeContainer}>
-                <Image
-                     source={require('../assets/png/favorite.png')} // 올바른 상대 경로로 변경
-                     style={styles.favoriteHeart}
-                />
-                <Text>를 눌러보세요!</Text>
+              <Image
+                source={require('../assets/png/favorite.png')} // 올바른 상대 경로로 변경
+                style={styles.favoriteHeart}
+              />
+              <Text>를 눌러보세요!</Text>
             </View>
           </View>
         </View>
