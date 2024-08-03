@@ -81,30 +81,85 @@ modalBackground: {
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   modalContent: {
-    width: 300,
-    padding: 20,
+    width: 320,
+    padding: 30,
     backgroundColor: 'white',
-    borderRadius: 10,
-    alignItems: 'center',
+    borderRadius: 36,
+//     alignItems: 'center',
   },
-  modalText: {
-    marginBottom: 20,
+    modalInner:{
+      flexDirection:'row',
+      marginTop:5,
+      marginBottom:20,
+      alignItems:'center',
+    },
+
+  modalDate:{
+      fontSize:22,
+      fontWeight:'bold',
+      paddingRight:5,
+      color:'#111111',
+
+      },
+  modalApp:{
+
+      },
+  modalTell: {
+      fontSize:20,
+      color:'#111111',
   },
+  modalText:{
+      marginBottom:5,
+
+      },
+  input:{
+      backgroundColor:'#EEEEEE',
+      padding:10,
+      borderRadius:10,
+      marginBottom:17,
+      },
+  modalButtons:{
+      flexDirection:'row',
+      },
   closeButton: {
     padding: 10,
-    backgroundColor: '#2196F3',
+    backgroundColor: '#EEEEEE',
     borderRadius: 5,
+    width:'48%',
+
   },
   closeButtonText: {
-    color: 'white',
+    color: 'black',
     fontWeight: 'bold',
+    textAlign:'center',
   },
+  closeButtonAdd:{
+    padding: 10,
+    backgroundColor: '#FFAF36',
+    borderRadius: 5,
+    textAlign:'center',
+    width:'47%',
+    marginLeft:10,
+      },
 
+
+
+  pickerTime:{
+      flexDirection:'row',
+      alignItems:'center',
+      left:-5,
+      marginBottom:40,
+
+      },
    picker: {
-      width: 150,
+      width: 120,
       height: 40,
-//       backgroundColor: '#e0e0e0',
+      backgroundColor: '#F2F2F2',
+      borderWidth:1,
+      margin:5,
+      padding:2,
       borderRadius: 10,
+
     },
     upcomingAppointment: {
         backgroundColor: '#FFF5E8', // 주황색 배경
@@ -113,20 +168,20 @@ modalBackground: {
 //         height:100,
 
   },
-    currentCobal:{
-        height:100,
-        resizeMode:'center',
-        margin:-30,
-        },
+
         appointText:{
             width:250,
-            fontSize:16,
-            textAlign:'center',
+            fontSize:20,
 
             },
 
         appointTextBold:{
             fontWeight:'bold',
+            textAlign:'center',
+            fontSize:16,
+            },
+
+        appointText1:{
             textAlign:'center',
             fontSize:16,
             },

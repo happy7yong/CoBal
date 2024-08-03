@@ -14,6 +14,7 @@ import {
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { styles } from './TargetScreen-styles';
 import { BlurView } from '@react-native-community/blur';
+import axios from 'axios'; // axios import 추가
 
 const { width } = Dimensions.get('window');
 const { width: screenWidth } = Dimensions.get('window');
@@ -114,19 +115,37 @@ const TargetScreen: React.FC = () => {
     });
   };
 
-  const handleSend = () => {
+  const handleSend = async () => {
     console.log('Input Value:', inputValue);
-    // You can also do other actions with the inputValue here
+    try {
+      const response = await axios.post('http://192.168.146.148:5000/submit', {
+        text: inputValue,
+      });
+      console.log('서버 응답:', response.data);
+    } catch (error) {
+      console.error('서버 요청 오류:', error);
+    }
   };
+
 
   const handleVoice = () => {
     console.log('음성을 보낼까요?');
 
   };
 
-  const handleLike = () =>{
+  const handleLike = async () => {
     console.log('좋아요를 누르셨습니다');
-    };
+
+    try {
+      const response = await axios.post('http://192.168.146.148:5000/like', {
+        // 서버에서 필요한 데이터를 추가합니다
+        liked: true,
+      });
+      console.log('서버 응답:', response.data);
+    } catch (error) {
+      console.error('서버 요청 오류:', error);
+    }
+  };
 
   const handleSchedule = () =>{
     console.log('스케줄을 확인합니다.');
@@ -183,7 +202,7 @@ const TargetScreen: React.FC = () => {
         </View>
       </View>
       <View style={styles.sendOption}>
-                  <TouchableOpacity style={styles.LikeBtn} onPress={handleLike}>
+                  <TouchableOpacity style={styles.Like} onPress={handleLike}>
                               <Image
                                   source={require('../assets/png/favorite_Line.png')} // 올바른 상대 경로로 변경
                                   style={styles.Icons}
@@ -199,12 +218,7 @@ const TargetScreen: React.FC = () => {
         <TouchableOpacity style={styles.thisSchedule} onPress={handleSchedule}>
             <View style={styles.thisScheduleContainer}>
                     <View style={styles.blur}>
-                       <BlurView
-                              style={styles.blurView}
-                              blurType="light"
-                              blurAmount={10}
-                              reducedTransparencyFallbackColor="rgba(246, 246, 246, 0.5)"
-                        />
+
                     </View>
                     <View style={styles.textInner}>
                       <Text style={styles.textTime}>10:00~11:00</Text>

@@ -52,7 +52,10 @@ export const styles = StyleSheet.create({
       marginTop: 5, // "기분이 좋아요"의 상단 여백 설정
       color:'#111111'
     },
-
+    voiceImage: {
+        width: '50%',
+        resizeMode: 'contain', // 이미지 비율 유지
+    },
 
 
 //점심드시고 혈압약 안드셨어요!
@@ -97,14 +100,8 @@ export const styles = StyleSheet.create({
         right:19,
     },
     topNavi:{
-            width:'80%',
+            width:'70%',
             resizeMode: 'contain',
-    },
-topNavi1:{
-    width:'80%',
-    resizeMode: 'contain',
-    alignItems:'center',
-
     },
     alarmTextContainer:{
         alignItems:'flex-start',
@@ -131,7 +128,7 @@ topNavi1:{
         borderColor: '#E7E7E7',
         borderWidth:1.5,
         height: 200,
-        bottom: -80,
+        bottom: -120,
         backgroundColor:'#FFFFFF',
         padding:30,
 
@@ -163,7 +160,6 @@ topNavi1:{
         height: '110%',
         backgroundColor: '#F6F6F6',
         borderRadius: 30,
-
         margin: 11,
         padding: 12,
         paddingBottom:20,
@@ -182,7 +178,7 @@ topNavi1:{
         padding:10,
       },
       SunFlowerImage: {
-        width: '50%',
+        width: '40%',
         height: '110%',
         borderRadius: 50,
         marginRight: 10, // 이미지와 텍스트 사이의 여백
@@ -221,30 +217,26 @@ topNavi1:{
            fontSize:10,
            },
 
-    voiceImage: {
-        width: '50%',
-        resizeMode: 'contain', // 이미지 비율 유지
-    },
+
 
        voiceIcon: {
            position: 'absolute',
            width: 180,
            height: 180,
-           left:10,
+           left:19,
            resizeMode:'center',
            zIndex:10,
          },
 
          voiceOnIcon: {
              position: 'absolute',
+           position: 'absolute',
            height: 200,
-//            left:5,
 
          },
      voiceOnImage:{
-         width:133,
-          height:133,
-          left:-13,
+         width:130,
+          height:130,
 
          },
 

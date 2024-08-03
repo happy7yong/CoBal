@@ -97,7 +97,7 @@ export const styles = StyleSheet.create({
         margin:5,
 
     },
-    LikeBtn:{
+    Like:{
         width:50,
         height:50,
         justifyContent: 'center',

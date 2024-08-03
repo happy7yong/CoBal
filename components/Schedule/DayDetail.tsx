@@ -22,6 +22,7 @@ const DayDetail: React.FC<DayDetailProps> = ({ day, appointments, onAddAppointme
   const [selectedStartHour, setSelectedStartHour] = useState<number>(1);
   const [selectedLastHour, setSelectedLastHour] = useState<number>(2);
   const [currentHour, setCurrentHour] = useState<number>(0);
+  const [todayDate, setTodayDate] = useState<string>('');
 
   useEffect(() => {
     // 한국 시각을 가져오는 API 호출
@@ -31,6 +32,10 @@ const DayDetail: React.FC<DayDetailProps> = ({ day, appointments, onAddAppointme
         const data = await response.json();
         const koreanTime = new Date(data.datetime);
         setCurrentHour(koreanTime.getHours());
+        // 오늘 날짜를 월과 일로 포맷
+        const month = koreanTime.getMonth() + 1; // 월은 0부터 시작하므로 +1
+        const day = koreanTime.getDate();
+        setTodayDate(`${month}월 ${day}일`);
       } catch (error) {
         console.error('Error fetching Korean time:', error);
       }
@@ -79,10 +84,10 @@ const DayDetail: React.FC<DayDetailProps> = ({ day, appointments, onAddAppointme
       </View>
       <ScrollView style={styles.appointContainer}>
         {appointments.length === 0 ? (
-            <View>
-                <Text style={styles.appointText}>아직 일정이 없어요</Text>
-                <Text style={styles.appointTextBold}>새로운 약속을 잡아보실까요?</Text>
-           </View>
+          <View>
+            <Text style={styles.appointText1}>아직 일정이 없어요</Text>
+            <Text style={styles.appointTextBold}>새로운 약속을 잡아보실까요?</Text>
+          </View>
         ) : (
           appointments.map((appointment, index) => (
             <View
@@ -94,10 +99,7 @@ const DayDetail: React.FC<DayDetailProps> = ({ day, appointments, onAddAppointme
             >
               {isUpcomingAppointment(appointment.time) && (
                 <View style={styles.appointmentRow}>
-                  <Image
-                    source={require('../../assets/png/cobalPr.png')} // 새로 추가된 이미지 경로
-                    style={styles.currentCobal}
-                  />
+
                   <Text style={styles.appointText}>
                     {appointment.time}:00 ~ {appointment.lastHour}:00
                   </Text>
@@ -130,25 +132,30 @@ const DayDetail: React.FC<DayDetailProps> = ({ day, appointments, onAddAppointme
       >
         <View style={styles.modalBackground}>
           <View style={styles.modalContent}>
-            <Text style={styles.modalText}>새로운 일정을 입력해주세요.</Text>
+          <View style={styles.modalInner}>
+            <Text style={styles.modalDate}>{todayDate}</Text>
+            <Text style={styles.modalTell}>약속 잡기</Text>
+            </View>
+            <Text style={styles.modalText}>약속 내용</Text>
             <TextInput
               style={styles.input}
               value={newAppointment}
               onChangeText={setNewAppointment}
-              placeholder="일정을 입력하세요"
+              placeholder="약속의 내용을 입력하세요"
             />
-            <Text style={styles.modalText}>시작 시간 선택</Text>
-            <Picker
-              selectedValue={selectedStartHour}
-              onValueChange={(itemValue) => setSelectedStartHour(itemValue)}
-              style={styles.picker}
-            >
-              {Array.from({ length: 24 }, (_, i) => i + 1).map((startHour) => (
-                <Picker.Item key={startHour} label={`${startHour}:00`} value={startHour} />
-              ))}
-            </Picker>
+            <Text style={styles.modalText}>약속시간</Text>
+            <View style={styles.pickerTime}>
 
-            <Text style={styles.modalText}>종료 시간 선택</Text>
+                <Picker
+                  selectedValue={selectedStartHour}
+                  onValueChange={(itemValue) => setSelectedStartHour(itemValue)}
+                  style={styles.picker}
+                >
+                  {Array.from({ length: 24 }, (_, i) => i + 1).map((startHour) => (
+                    <Picker.Item key={startHour} label={`${startHour}:00`} value={startHour} />
+                  ))}
+                </Picker>
+            <Text>~</Text>
             <Picker
               selectedValue={selectedLastHour}
               onValueChange={(itemValue) => setSelectedLastHour(itemValue)}
@@ -158,13 +165,14 @@ const DayDetail: React.FC<DayDetailProps> = ({ day, appointments, onAddAppointme
                 <Picker.Item key={endHour} label={`${endHour}:00`} value={endHour} />
               ))}
             </Picker>
+            </View>
 
             <View style={styles.modalButtons}>
-              <TouchableOpacity style={styles.closeButton} onPress={handleAddModal}>
-                <Text style={styles.closeButtonText}>추가</Text>
-              </TouchableOpacity>
               <TouchableOpacity style={styles.closeButton} onPress={handleCloseModal}>
                 <Text style={styles.closeButtonText}>닫기</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.closeButtonAdd} onPress={handleAddModal}>
+                <Text style={styles.closeButtonText}>추가</Text>
               </TouchableOpacity>
             </View>
           </View>

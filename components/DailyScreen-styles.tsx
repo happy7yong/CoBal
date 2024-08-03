@@ -172,5 +172,7 @@ btnInner:{
             },
 
        emptyContainer:{
+           height:300,
+           width:10,
            },
 });
