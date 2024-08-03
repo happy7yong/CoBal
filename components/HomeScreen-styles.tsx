@@ -112,13 +112,13 @@ topNavi1:{
 
     },
     alarmMainText:{
-            fontSize:19,
+            fontSize:18,
             color: '#111111',
             paddingBottom:1,
 
     },
     alarmSubText:{
-            fontSize:19,
+            fontSize:18,
             fontWeight:'bold',
             color: '#111111'
     },
@@ -165,7 +165,7 @@ topNavi1:{
         borderRadius: 30,
 
         margin: 11,
-        padding: 12,
+        padding: 11,
         paddingBottom:20,
         alignItems:'center',
         justifyContent:'center',
@@ -182,8 +182,8 @@ topNavi1:{
         padding:10,
       },
       SunFlowerImage: {
-        width: '50%',
-        height: '110%',
+        width: '40%',
+        height: '90%',
         borderRadius: 50,
         marginRight: 10, // 이미지와 텍스트 사이의 여백
       },

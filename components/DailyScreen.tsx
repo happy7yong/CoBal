@@ -105,15 +105,15 @@ const DailyScreen: React.FC = () => {
             </View>
           </View>
           <View style={styles.dailyContainer}>
-            <Image source={require('../assets/png/Sunflower-image.png')} style={styles.dailyContentImage} />
+            <Image source={require('../assets/png/Ground-image.png')} style={styles.dailyContentImage} />
             <View style={styles.rightContainer}>
-              <Text style={styles.TimeText}>AM 10:00</Text>
-              <Text style={styles.thinkText1}>해바라기를 선물로</Text>
-              <Text style={styles.thinkText2}>받아봤으면 했어요.</Text>
+              <Text style={styles.TimeText}>PM 01:00</Text>
+              <Text style={styles.thinkText1}>한강공원에서</Text>
+              <Text style={styles.thinkText2}>산책을 했어요.</Text>
               <View style={styles.line}></View>
               <View style={styles.distance}>
                 <Image source={require('../assets/png/distance.png')} style={styles.distanceImage} />
-                <Text style={styles.GPSText}>신곡동 53-52</Text>
+                <Text style={styles.GPSText}>여의도 한강공원</Text>
               </View>
               <View style={styles.btnInner}>
                 <View style={styles.soundContainer}>

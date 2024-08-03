@@ -116,7 +116,7 @@ export const styles = StyleSheet.create({
     },
   scrollViewContainer: {
     alignItems: 'center',
-    height: '120%',
+    height: 'Auto',
   },
   flatList: {
     flex: 1,
@@ -172,7 +172,7 @@ btnInner:{
             },
 
        emptyContainer:{
-           height:300,
+           height:400,
            width:10,
            },
 });
