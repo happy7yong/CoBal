@@ -67,8 +67,8 @@ const DayDetail: React.FC<DayDetailProps> = ({ day, appointments, onAddAppointme
     setIsModalVisible(false);
   };
 
-  const isUpcomingAppointment = (appointmentTime: number): boolean => {
-    return appointmentTime >= currentHour;
+  const isUpcomingAppointment = (appointmentTime: number, lastHour: number): boolean => {
+    return appointmentTime <= currentHour && lastHour >= currentHour;
   };
 
   return (
@@ -94,24 +94,23 @@ const DayDetail: React.FC<DayDetailProps> = ({ day, appointments, onAddAppointme
               key={index}
               style={[
                 styles.appointSchedule,
-                isUpcomingAppointment(appointment.time) ? styles.upcomingAppointment : {}
+                isUpcomingAppointment(appointment.time, appointment.lastHour) ? styles.upcomingAppointment : {}
               ]}
             >
-              {isUpcomingAppointment(appointment.time) && (
-                <View style={styles.appointmentRow}>
-
-                  <Text style={styles.appointText}>
-                    {appointment.time}:00 ~ {appointment.lastHour}:00
-                  </Text>
-                  <Text style={styles.appointText}>{appointment.text}</Text>
-                </View>
-              )}
-              {!isUpcomingAppointment(appointment.time) && (
-                <View style={styles.becurrentAppointContainer}>
-                  <Text style={styles.becurrentAppointTime}>{appointment.time}:00 ~ {appointment.lastHour}:00</Text>
-                  <Text style={styles.becurrentAppointText}>{appointment.text}</Text>
-                </View>
-              )}
+              <View style={styles.appointmentRow}>
+                <Text style={[
+                  styles.appointText2,
+                  isUpcomingAppointment(appointment.time, appointment.lastHour) ? styles.upcomingAppointmentTime : {}
+                ]}>
+                  {appointment.time}:00 ~ {appointment.lastHour}:00
+                </Text>
+                <Text style={[
+                  styles.appointText,
+                  isUpcomingAppointment(appointment.time, appointment.lastHour) ? styles.upcomingAppointmentText : {}
+                ]}>
+                  {appointment.text}
+                </Text>
+              </View>
               <TouchableOpacity onPress={() => onDeleteAppointment(index)}>
                 <Image
                   source={require('../../assets/png/Close.png')}
@@ -132,9 +131,9 @@ const DayDetail: React.FC<DayDetailProps> = ({ day, appointments, onAddAppointme
       >
         <View style={styles.modalBackground}>
           <View style={styles.modalContent}>
-          <View style={styles.modalInner}>
-            <Text style={styles.modalDate}>{todayDate}</Text>
-            <Text style={styles.modalTell}>약속 잡기</Text>
+            <View style={styles.modalInner}>
+              <Text style={styles.modalDate}>{todayDate}</Text>
+              <Text style={styles.modalTell}>약속 잡기</Text>
             </View>
             <Text style={styles.modalText}>약속 내용</Text>
             <TextInput
@@ -145,28 +144,26 @@ const DayDetail: React.FC<DayDetailProps> = ({ day, appointments, onAddAppointme
             />
             <Text style={styles.modalText}>약속시간</Text>
             <View style={styles.pickerTime}>
-
-                <Picker
-                  selectedValue={selectedStartHour}
-                  onValueChange={(itemValue) => setSelectedStartHour(itemValue)}
-                  style={styles.picker}
-                >
-                  {Array.from({ length: 24 }, (_, i) => i + 1).map((startHour) => (
-                    <Picker.Item key={startHour} label={`${startHour}:00`} value={startHour} />
-                  ))}
-                </Picker>
-            <Text>~</Text>
-            <Picker
-              selectedValue={selectedLastHour}
-              onValueChange={(itemValue) => setSelectedLastHour(itemValue)}
-              style={styles.picker}
-            >
-              {Array.from({ length: 24 }, (_, i) => i + 1).map((endHour) => (
-                <Picker.Item key={endHour} label={`${endHour}:00`} value={endHour} />
-              ))}
-            </Picker>
+              <Picker
+                selectedValue={selectedStartHour}
+                onValueChange={(itemValue) => setSelectedStartHour(itemValue)}
+                style={styles.picker}
+              >
+                {Array.from({ length: 24 }, (_, i) => i + 1).map((startHour) => (
+                  <Picker.Item key={startHour} label={`${startHour}:00`} value={startHour} />
+                ))}
+              </Picker>
+              <Text>~</Text>
+              <Picker
+                selectedValue={selectedLastHour}
+                onValueChange={(itemValue) => setSelectedLastHour(itemValue)}
+                style={styles.picker}
+              >
+                {Array.from({ length: 24 }, (_, i) => i + 1).map((endHour) => (
+                  <Picker.Item key={endHour} label={`${endHour}:00`} value={endHour} />
+                ))}
+              </Picker>
             </View>
-
             <View style={styles.modalButtons}>
               <TouchableOpacity style={styles.closeButton} onPress={handleCloseModal}>
                 <Text style={styles.closeButtonText}>닫기</Text>

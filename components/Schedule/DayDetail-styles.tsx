@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     inner:{
             width : '100%',
 //             height : 150,
-            padding: 40,
+            padding: 30,
             flexDirection:'row',
             justifyContent: 'space-between',
 
@@ -48,6 +48,8 @@ export const styles = StyleSheet.create({
       },
   MAText:{
       color:'#FFFFFF',
+      fontSize:16,
+      fontWeight:'bold',
       },
     appointSchedule :{
         backgroundColor:'#F6F6F6',
@@ -175,37 +177,23 @@ modalBackground: {
 
             },
 
-        appointTextBold:{
-            fontWeight:'bold',
-            textAlign:'center',
-            fontSize:16,
-            },
-
         appointText1:{
-            textAlign:'center',
-            fontSize:16,
+                textAlign:'center',
             },
 
-    appointmentRow:{
+        appointTextBold:{
+                textAlign:'center',
+                fontWeight:'bold',
+            },
 
-        },
-    appointContainer:{
-//         justifyContent:'center',
-        },
-
-    becurrentAppointContainer: {
-
-//         alignItems: 'center', // 수직 중앙 정렬
-      },
-      becurrentAppointTime: {
-        fontSize: 16,
-        marginRight: 10, // 시간과 텍스트 사이의 간
-      },
-      becurrentAppointText: {
-        fontSize: 16,
+     upcomingAppointmentText: {
+        fontSize: 20, // 주황색 박스의 텍스트 크기
         fontWeight:'bold',
-}
-
+      },
+      upcomingAppointmentTime: {
+          fontWeight:'bold',
+        fontSize: 18, // 주황색 박스의 시간 텍스트 크기
+      },
 
 
 });

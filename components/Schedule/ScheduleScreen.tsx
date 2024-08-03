@@ -123,9 +123,9 @@ const ScheduleScreen: React.FC = () => {
           </View>
         </View>
         <View style={styles.dayCellContainer}>
-          <ScrollView horizontal={true} contentContainerStyle={styles.scrollView}>
+          <View horizontal={true} contentContainerStyle={styles.scrollView}>
             {renderDays()}
-          </ScrollView>
+          </View>
         </View>
       </View>
       <View style={styles.currentContainer}>

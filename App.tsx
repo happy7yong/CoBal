@@ -1,4 +1,3 @@
-// App.tsx
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -29,6 +28,7 @@ const App: React.FC = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator
+        initialRouteName="홈" // 기본적으로 '홈' 화면을 보여줍니다.
         screenOptions={({ route }) => ({
           tabBarIcon: ({ color, size }) => {
             let iconSource;

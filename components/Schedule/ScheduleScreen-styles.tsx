@@ -23,9 +23,9 @@ export const styles = StyleSheet.create({
   },
   Image: {
     position: 'absolute',
-    width: '11%',
+    width: '10%',
     resizeMode: 'contain',
-    right: -150,
+    right: -140,
   },
   calender: {
     width: '100%',
@@ -55,17 +55,18 @@ export const styles = StyleSheet.create({
     borderRadius: 50,
   },
   dayCell: {
-    flex: 1,
+//     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+
     borderWidth: 1,
     borderRadius: 50,
     borderColor: '#E7E7E7',
     backgroundColor: '#FFFFFF',
-    width: 50, // width for each day cell
+    width: 51, // width for each day cell
     height: 80,
-    marginHorizontal: 5,
+//     marginHorizontal: 3,
 //     elevation: 2,
 
   },
@@ -112,11 +113,13 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   currentContainerText: {
-    fontSize: 16,
-    color: '#111111',
+
+     margin:20,
+    fontSize: 15,
+    color: '#7C7C7C',
   },
   dayCellContent: {
-    width: 50, // 여기에 width 맞추기
+    width: 40, // 여기에 width 맞추기
     height: 80,
     borderRadius: 50,
     justifyContent: 'center',
