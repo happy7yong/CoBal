@@ -81,6 +81,7 @@ export const styles = StyleSheet.create({
     borderBottomLeftRadius : 36,
   },
 
+
   TimeText:{
       paddingBottom:1,
       fontSize:13,
@@ -172,7 +173,7 @@ btnInner:{
             },
 
        emptyContainer:{
-           height:400,
+           height:80,
            width:10,
-           },
+       },
 });

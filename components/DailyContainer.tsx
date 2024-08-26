@@ -1,4 +1,3 @@
-// components/DailyContainer.tsx
 import React, { useRef } from 'react';
 import { View, Animated, PanResponder, Dimensions } from 'react-native';
 import { styles } from './DailyContainer-styles'; // styles 파일 import

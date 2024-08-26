@@ -125,8 +125,8 @@ const DailyScreen: React.FC = () => {
               </View>
             </View>
           </View>
-          <View style={styles.emptyContainer}></View>
         </View>
+        <View style={styles.emptyContainer}></View>
       </ScrollView>
     </View>
   );
