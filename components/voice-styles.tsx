@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     height: 500, // 이미지의 높이 설정
     resizeMode: 'contain', // 이미지 비율 유지
     position: 'absolute',
-    top: 70, // 화면의 상단에서 50픽셀 떨어지도록 설정 (원하는 대로 조정 가능)
+    top: 50, // 화면의 상단에서 50픽셀 떨어지도록 설정 (원하는 대로 조정 가능)
   },
   settingsScreenContainer: {
     flex: 1,
@@ -52,7 +52,10 @@ export const styles = StyleSheet.create({
       marginTop: 5, // "기분이 좋아요"의 상단 여백 설정
       color:'#111111'
     },
-
+    voiceImage: {
+        width: '50%',
+        resizeMode: 'contain', // 이미지 비율 유지
+    },
 
 
 //점심드시고 혈압약 안드셨어요!
@@ -97,14 +100,8 @@ export const styles = StyleSheet.create({
         right:19,
     },
     topNavi:{
-            width:'80%',
+            width:'70%',
             resizeMode: 'contain',
-    },
-topNavi1:{
-    width:'80%',
-    resizeMode: 'contain',
-    alignItems:'center',
-
     },
     alarmTextContainer:{
         alignItems:'flex-start',
@@ -112,13 +109,13 @@ topNavi1:{
 
     },
     alarmMainText:{
-            fontSize:18,
+            fontSize:19,
             color: '#111111',
             paddingBottom:1,
 
     },
     alarmSubText:{
-            fontSize:18,
+            fontSize:19,
             fontWeight:'bold',
             color: '#111111'
     },
@@ -131,7 +128,7 @@ topNavi1:{
         borderColor: '#E7E7E7',
         borderWidth:1.5,
         height: 200,
-        bottom: -110,
+        bottom: -120,
         backgroundColor:'#FFFFFF',
         padding:30,
 
@@ -163,9 +160,8 @@ topNavi1:{
         height: '110%',
         backgroundColor: '#F6F6F6',
         borderRadius: 30,
-
         margin: 11,
-        padding: 11,
+        padding: 12,
         paddingBottom:20,
         alignItems:'center',
         justifyContent:'center',
@@ -182,10 +178,13 @@ topNavi1:{
         padding:10,
       },
       SunFlowerImage: {
-        width: '42%',
-        height: '120%',
-        borderRadius: 100,
+        width: '40%',
+        height: '110%',
+        borderRadius: 50,
         marginRight: 10, // 이미지와 텍스트 사이의 여백
+      },
+      dailyText: {
+//         flexShrink: 1,
       },
         dailyTextFont:{
 //             fontSize: 18,
@@ -218,36 +217,29 @@ topNavi1:{
            fontSize:10,
            },
 
-    voiceImage: {
-        width: '50%',
-        resizeMode: 'contain', // 이미지 비율 유지
-    },
+
 
        voiceIcon: {
            position: 'absolute',
            width: 180,
            height: 180,
-           left:10,
+           left:19,
            resizeMode:'center',
            zIndex:10,
          },
 
          voiceOnIcon: {
              position: 'absolute',
+           position: 'absolute',
            height: 200,
-//            left:5,
 
          },
      voiceOnImage:{
-         width:133,
-          height:133,
-          left:-13,
+         width:130,
+          height:130,
 
          },
-     dailyTextInner:{
-         width:'100%',
 
-        },
 
 
          recordButton: {
@@ -266,15 +258,4 @@ topNavi1:{
            fontSize: 16,
            fontWeight: 'bold',
          },
-
-    //이너 안의 좋아요버튼
-    likeCounterContainer:{
-        width:'100px',
-//         backgroundColor: '#FFFFFF',
-        },
-
-    likeCounter:{
-        padding:'10px',
-        borderRadius:'100px',
-        },
 });
