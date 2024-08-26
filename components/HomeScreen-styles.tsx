@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     height: 500, // 이미지의 높이 설정
     resizeMode: 'contain', // 이미지 비율 유지
     position: 'absolute',
-    top: 50, // 화면의 상단에서 50픽셀 떨어지도록 설정 (원하는 대로 조정 가능)
+    top: 70, // 화면의 상단에서 50픽셀 떨어지도록 설정 (원하는 대로 조정 가능)
   },
   settingsScreenContainer: {
     flex: 1,
@@ -131,7 +131,7 @@ topNavi1:{
         borderColor: '#E7E7E7',
         borderWidth:1.5,
         height: 200,
-        bottom: -80,
+        bottom: -110,
         backgroundColor:'#FFFFFF',
         padding:30,
 
@@ -182,13 +182,10 @@ topNavi1:{
         padding:10,
       },
       SunFlowerImage: {
-        width: '40%',
-        height: '90%',
-        borderRadius: 50,
+        width: '42%',
+        height: '120%',
+        borderRadius: 100,
         marginRight: 10, // 이미지와 텍스트 사이의 여백
-      },
-      dailyText: {
-//         flexShrink: 1,
       },
         dailyTextFont:{
 //             fontSize: 18,
@@ -247,7 +244,10 @@ topNavi1:{
           left:-13,
 
          },
+     dailyTextInner:{
+         width:'100%',
 
+        },
 
 
          recordButton: {
@@ -266,4 +266,15 @@ topNavi1:{
            fontSize: 16,
            fontWeight: 'bold',
          },
+
+    //이너 안의 좋아요버튼
+    likeCounterContainer:{
+        width:'100px',
+//         backgroundColor: '#FFFFFF',
+        },
+
+    likeCounter:{
+        padding:'10px',
+        borderRadius:'100px',
+        },
 });

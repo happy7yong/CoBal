@@ -153,6 +153,8 @@ const HomeScreen: React.FC = () => {
           <Text style={styles.alarmSubText}>혈압약 안드셨어요!</Text>
         </View>
       </View>
+
+
       <View style={styles.dailyContainer}>
         <View style={styles.dailyTextContainer}>
           <Text style={styles.dailyTextTime}>{currentTime}</Text>
@@ -165,7 +167,7 @@ const HomeScreen: React.FC = () => {
                 source={require('../assets/png/Sunflower-image.png')}
                 style={styles.SunFlowerImage}
               />
-              <View style={styles.dailyText}>
+              <View style={styles.dailyTextInner}>
                 <Text style={styles.dailyText}>해바라기를 선물로 받아 봤으면 했어요.</Text>
               </View>
             </View>
