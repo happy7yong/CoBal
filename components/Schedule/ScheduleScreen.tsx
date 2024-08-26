@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { styles } from './ScheduleScreen-styles';
 import LinearGradient from 'react-native-linear-gradient';
@@ -21,6 +21,14 @@ const ScheduleScreen: React.FC = () => {
 
   const itemsPerPage = 6;
   const totalPages = Math.ceil(daysInMonth.length / itemsPerPage);
+
+  useEffect(() => {
+    // 현재 날짜가 포함된 페이지를 계산
+    const currentDayIndex = daysInMonth.indexOf(currentDay);
+    const page = Math.floor(currentDayIndex / itemsPerPage);
+    setCurrentPage(page);
+    setSelectedDay(currentDay); // 오늘 날짜를 선택된 날짜로 설정
+  }, []);
 
   const handleNextPage = () => {
     if (currentPage < totalPages - 1) {
