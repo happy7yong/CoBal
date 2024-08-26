@@ -22,20 +22,15 @@ const DayDetail: React.FC<DayDetailProps> = ({ day, appointments, onAddAppointme
   const [selectedStartHour, setSelectedStartHour] = useState<number>(1);
   const [selectedLastHour, setSelectedLastHour] = useState<number>(2);
   const [currentHour, setCurrentHour] = useState<number>(0);
-  const [todayDate, setTodayDate] = useState<string>('');
+  const [modalDate, setModalDate] = useState<string>('');
 
   useEffect(() => {
-    // 한국 시각을 가져오는 API 호출
     const fetchKoreanTime = async () => {
       try {
         const response = await fetch('http://worldtimeapi.org/api/timezone/Asia/Seoul');
         const data = await response.json();
         const koreanTime = new Date(data.datetime);
         setCurrentHour(koreanTime.getHours());
-        // 오늘 날짜를 월과 일로 포맷
-        const month = koreanTime.getMonth() + 1; // 월은 0부터 시작하므로 +1
-        const day = koreanTime.getDate();
-        setTodayDate(`${month}월 ${day}일`);
       } catch (error) {
         console.error('Error fetching Korean time:', error);
       }
@@ -44,7 +39,15 @@ const DayDetail: React.FC<DayDetailProps> = ({ day, appointments, onAddAppointme
     fetchKoreanTime();
   }, []);
 
+
+    // day 값을 이용하여 모달을 열 때 날짜를 계산
   const handleAddAppointment = () => {
+    const today = new Date();
+    today.setDate(day); // day 값으로 날짜 설정
+    const month = today.getMonth() + 1; // 월은 0부터 시작하므로 +1
+    const date = today.getDate();
+    setModalDate(`${month}월 ${date}일`);
+
     setIsModalVisible(true);
   };
 
@@ -132,7 +135,7 @@ const DayDetail: React.FC<DayDetailProps> = ({ day, appointments, onAddAppointme
         <View style={styles.modalBackground}>
           <View style={styles.modalContent}>
             <View style={styles.modalInner}>
-              <Text style={styles.modalDate}>{todayDate}</Text>
+              <Text style={styles.modalDate}>{modalDate}</Text>
               <Text style={styles.modalTell}>약속 잡기</Text>
             </View>
             <Text style={styles.modalText}>약속 내용</Text>
