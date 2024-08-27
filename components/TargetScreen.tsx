@@ -118,7 +118,7 @@ const TargetScreen: React.FC = () => {
   const handleSend = async () => {
     console.log('Input Value:', inputValue);
     try {
-      const response = await axios.post('http://192.168.146.148:5000/submit', {
+      const response = await axios.post('http://192.168.202.148:5000/submit', {
         text: inputValue,
       });
       console.log('서버 응답:', response.data);
@@ -137,7 +137,7 @@ const TargetScreen: React.FC = () => {
     console.log('좋아요를 누르셨습니다');
 
     try {
-      const response = await axios.post('http://192.168.146.148:5000/like', {
+      const response = await axios.post('http://192.168.202.148:5000/like', {
         // 서버에서 필요한 데이터를 추가합니다
         liked: true,
       });

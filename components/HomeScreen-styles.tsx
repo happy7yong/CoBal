@@ -131,7 +131,7 @@ topNavi1:{
         borderColor: '#E7E7E7',
         borderWidth:1.5,
         height: 200,
-        bottom: -110,
+        bottom: -80,
         backgroundColor:'#FFFFFF',
         padding:30,
 
@@ -159,7 +159,7 @@ topNavi1:{
 
     //메인inner
       inner: {
-        width: '70%',
+        width: '62%',
         height: '110%',
         backgroundColor: '#F6F6F6',
         borderRadius: 30,
@@ -182,8 +182,8 @@ topNavi1:{
         padding:10,
       },
       SunFlowerImage: {
-        width: '42%',
-        height: '120%',
+        width: '60%',
+        height: '100%',
         borderRadius: 100,
         marginRight: 10, // 이미지와 텍스트 사이의 여백
       },
@@ -245,7 +245,7 @@ topNavi1:{
 
          },
      dailyTextInner:{
-         width:'100%',
+         width:'110%',
 
         },
 
