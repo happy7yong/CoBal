@@ -17,7 +17,7 @@ const Voice: React.FC = () => {
       requestPermissions(); // 권한 요청
     }
 
-    // Clean up function to remove playback listener when component unmounts
+
     return () => {
       audioRecorderPlayer.removePlayBackListener();
     };

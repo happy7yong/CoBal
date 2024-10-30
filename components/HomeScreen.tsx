@@ -68,7 +68,7 @@ const HomeScreen: React.FC = () => {
     console.log('알림을 누르셨습니다.');
 
     try {
-      const response = await axios.post('http://192.168.202.148:5000/Alarm', {
+      const response = await axios.post('http://192.168.305.148:5000/Alarm', {
         Alarm: true,
       });
       console.log('서버 응답:', response.data);

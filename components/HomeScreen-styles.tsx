@@ -61,13 +61,13 @@ export const styles = StyleSheet.create({
         width:'70%',
         resizeMode: 'contain',
         right:51,
-        top:200,
+        top:180,
     },
     homeAlarmContainer:{ //이미지 말고 가장 큰 상자
         flexDirection: 'row', // 수평으로 배치
         width:250,
-        right:55,
-        top:62,
+        right:58,
+        top:41,
         alignItems: 'center',
         justifyContent: 'center',
 //         backgroundColor: '#F5F7FA',
@@ -100,10 +100,10 @@ export const styles = StyleSheet.create({
             width:'80%',
             resizeMode: 'contain',
     },
-topNavi1:{
-    width:'80%',
-    resizeMode: 'contain',
-    alignItems:'center',
+    topNavi1:{
+        width:'80%',
+        resizeMode: 'contain',
+        alignItems:'center',
 
     },
     alarmTextContainer:{
@@ -112,13 +112,12 @@ topNavi1:{
 
     },
     alarmMainText:{
-            fontSize:18,
+            fontSize:17,
             color: '#111111',
-            paddingBottom:1,
 
     },
     alarmSubText:{
-            fontSize:18,
+            fontSize:17,
             fontWeight:'bold',
             color: '#111111'
     },
@@ -131,7 +130,7 @@ topNavi1:{
         borderColor: '#E7E7E7',
         borderWidth:1.5,
         height: 200,
-        bottom: -80,
+        bottom: -110,
         backgroundColor:'#FFFFFF',
         padding:30,
 
@@ -179,11 +178,11 @@ topNavi1:{
       imageInner: {
         flexDirection: 'row',
         alignItems: 'center', // Y축 정렬
-        padding:10,
+        paddingLeft:10,
       },
       SunFlowerImage: {
         width: '60%',
-        height: '100%',
+        height: '70%',
         borderRadius: 100,
         marginRight: 10, // 이미지와 텍스트 사이의 여백
       },
@@ -245,7 +244,11 @@ topNavi1:{
 
          },
      dailyTextInner:{
-         width:'110%',
+         width:'70%',
+         height: '150%',
+         alignItems : 'center',
+         justifyContent: 'center',
+
 
         },
 
