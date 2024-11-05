@@ -125,12 +125,12 @@ export const styles = StyleSheet.create({
 
 //메인알림 슬라이드
     dailyContainer:{
-        width:'90%',
+        width:'93%',
         borderRadius:42,
         borderColor: '#E7E7E7',
         borderWidth:1.5,
-        height: 200,
-        bottom: -110,
+        height: 170,
+        bottom: -60,
         backgroundColor:'#FFFFFF',
         padding:30,
 
@@ -171,20 +171,27 @@ export const styles = StyleSheet.create({
 
       },
       dailyInner: {
-        padding:25,
+        padding:10,
         justifyContent: 'center',
         alignItems: 'center',
       },
       imageInner: {
         flexDirection: 'row',
         alignItems: 'center', // Y축 정렬
-        paddingLeft:10,
+        //paddingLeft:10,
       },
+  /*
+  imageSunflowerPa:{
+      width:'20px',
+      },*/
       SunFlowerImage: {
-        width: '60%',
-        height: '70%',
-        borderRadius: 100,
+          width:'30%',
+          height:'50%',
+        borderRadius: 200,
         marginRight: 10, // 이미지와 텍스트 사이의 여백
+        resizeMode:'cover'
+
+
       },
         dailyTextFont:{
 //             fontSize: 18,
@@ -249,10 +256,7 @@ export const styles = StyleSheet.create({
          alignItems : 'center',
          justifyContent: 'center',
 
-
         },
-
-
          recordButton: {
            width: 70,
            height: 70,

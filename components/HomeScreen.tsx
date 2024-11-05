@@ -53,11 +53,12 @@ const HomeScreen: React.FC = () => {
     });
 
     try {
-      const response = await axios.post('http://192.168.202.148:5000/upload', formData, {
+      const response = await axios.post('http://192.168.120.148:5000/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
-      });
+    timeout: 10000, // 요청이 너무 오래 걸리면 오류 발생
+     })
       console.log('서버 응답:', response.data);
     } catch (error) {
       console.error('파일 업로드 오류:', error);
@@ -68,7 +69,7 @@ const HomeScreen: React.FC = () => {
     console.log('알림을 누르셨습니다.');
 
     try {
-      const response = await axios.post('http://192.168.305.148:5000/Alarm', {
+      const response = await axios.post('http://192.168.120.148:5000/Alarm', {
         Alarm: true,
       });
       console.log('서버 응답:', response.data);
