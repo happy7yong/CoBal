@@ -232,8 +232,8 @@ export const styles = StyleSheet.create({
 
         justifyContent: 'center',
         alignItems: 'center',
-        top:150,
-        left:-150,
+        top:-50,
+        left:150,
         width:50,
         height:50,
         borderRadius:50,

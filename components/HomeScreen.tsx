@@ -21,11 +21,11 @@ const HomeScreen: React.FC = () => {
       requestPermissions();
     }
 
-    // Update current time every second
+    // 현재시각 실시간 추적
     const timer = setInterval(() => {
       const { currentDate, currentDay, currentMonth, currentYear, currentWeekDay } = getKoreanTime();
 
-      // Format current time as "AM/PM hh:mm"
+      //현재 시각 포맷 "AM/PM hh:mm"
       const formattedTime = new Intl.DateTimeFormat('ko-KR', {
         hour: '2-digit',
         minute: '2-digit',
@@ -33,7 +33,7 @@ const HomeScreen: React.FC = () => {
       }).format(currentDate);
       setCurrentTime(formattedTime);
 
-      // Format current date as "MM/DD"
+      //현재 날짜 포맷 "MM/DD"
       const formattedDate = `${currentMonth}/${currentDay}`;
       setCurrentDate(formattedDate);
     }, 1000);
@@ -121,6 +121,7 @@ const HomeScreen: React.FC = () => {
       console.error('Failed to call Flask server:', error);
     }
   };
+
   return (
     <View style={styles.homeScreenContainer}>
       <Image
