@@ -109,6 +109,18 @@ const HomeScreen: React.FC = () => {
     }
   };
 
+  const openAi = async () => {
+    try {
+      const response = await axios.get('http://192.168.232.148:5000/run-openai');
+      if (response.data.error) {
+        console.error('Error from Python script:', response.data.error);
+        return;
+      }
+      console.log('Python script output:', response.data.output);
+    } catch (error) {
+      console.error('Failed to call Flask server:', error);
+    }
+  };
   return (
     <View style={styles.homeScreenContainer}>
       <Image
@@ -135,6 +147,11 @@ const HomeScreen: React.FC = () => {
           )}
         </View>
       </View>
+      <TouchableOpacity style={styles.openai} onPress={openAi}>
+      <Image
+        source={require('../assets/png/dogBark.png')}
+        style={styles.openaiImage}/>
+      </TouchableOpacity>
       <Image
         source={require('../assets/png/homealarm.png')}
         style={styles.homeAlarmImage}

@@ -228,6 +228,29 @@ export const styles = StyleSheet.create({
         width: '50%',
         resizeMode: 'contain', // 이미지 비율 유지
     },
+    openai:{
+
+        justifyContent: 'center',
+        alignItems: 'center',
+        top:150,
+        left:-150,
+        width:50,
+        height:50,
+        borderRadius:50,
+        backgroundColor:'white',
+        borderWidth:1,
+        borderColor:'#E8E8E8',
+
+
+
+    },
+    openaiImage:{
+        width:'80%',
+        height:'60%',
+
+
+
+        },
 
        voiceIcon: {
            position: 'absolute',
