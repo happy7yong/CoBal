@@ -57,8 +57,8 @@ export const styles = StyleSheet.create({
     borderRadius: 20,
   },
   dailyContainer: {
-    margin: 13,
-    padding: 1,
+    margin: 12,
+    //padding: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -66,7 +66,7 @@ export const styles = StyleSheet.create({
   rightContainer: {
     backgroundColor: '#FFFFFF',
     width: '45%',
-    padding:20,
+    padding:18,
     justifyContent:'center',
     borderColor: '#E7E7E7',
     height: 240,
@@ -83,32 +83,33 @@ export const styles = StyleSheet.create({
 
 
   TimeText:{
-      paddingBottom:1,
-      fontSize:13,
+      paddingBottom:10,
+      fontSize:12,
       },
   GPSText:{
       paddingBottom:5,
       paddingLeft:6,
+      fontSize:13,
       },
     thinkText1:{
         color:'#111111',
-        fontSize:15,
+        fontSize:13,
         },
   thinkText2:{
       color:'#111111',
-      fontSize:15,
+      fontSize:13,
       fontWeight:'bold',
       },
   line:{
       backgroundColor: '#EAEAEA',
-          width: 130,
+          width: '100%',
           height: 2,
           marginTop: 13,
           marginBottom: 9,
           borderRadius: 20,
       },
   distanceImage:{
-      width:15,
+      width:12,
       resizeMode:'contain',
       },
   distance: {
@@ -141,7 +142,7 @@ btnInner:{
     flexDirection:'row',
     },
   soundContainer:{
-      width:43,
+      width:'38%',
       height:43,
       marginTop:15,
       borderRadius:50,
@@ -152,7 +153,7 @@ btnInner:{
       },
 
   recorderContainer:{
-            width:80,
+            width:'55%',
             height:43,
             marginTop:15,
             margin:5,
@@ -164,11 +165,11 @@ btnInner:{
       },
 
        SIcon:{
-            width:'40%',
+            width:'35%',
             resizeMode:'contain',
             },
     RIcon:{
-            width:16,
+            width:'35%',
             height:21,
             },
 

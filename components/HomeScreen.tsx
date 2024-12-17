@@ -21,11 +21,11 @@ const HomeScreen: React.FC = () => {
       requestPermissions();
     }
 
-    // Update current time every second
+    // 현재시각 실시간 추적
     const timer = setInterval(() => {
       const { currentDate, currentDay, currentMonth, currentYear, currentWeekDay } = getKoreanTime();
 
-      // Format current time as "AM/PM hh:mm"
+      //현재 시각 포맷 "AM/PM hh:mm"
       const formattedTime = new Intl.DateTimeFormat('ko-KR', {
         hour: '2-digit',
         minute: '2-digit',
@@ -33,7 +33,7 @@ const HomeScreen: React.FC = () => {
       }).format(currentDate);
       setCurrentTime(formattedTime);
 
-      // Format current date as "MM/DD"
+      //현재 날짜 포맷 "MM/DD"
       const formattedDate = `${currentMonth}/${currentDay}`;
       setCurrentDate(formattedDate);
     }, 1000);
@@ -53,11 +53,12 @@ const HomeScreen: React.FC = () => {
     });
 
     try {
-      const response = await axios.post('http://192.168.146.148:5000/upload', formData, {
+      const response = await axios.post('http://192.168.232.148:5000/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
-      });
+    timeout: 10000, // 요청이 너무 오래 걸리면 오류 발생
+     })
       console.log('서버 응답:', response.data);
     } catch (error) {
       console.error('파일 업로드 오류:', error);
@@ -68,7 +69,7 @@ const HomeScreen: React.FC = () => {
     console.log('알림을 누르셨습니다.');
 
     try {
-      const response = await axios.post('http://192.168.146.148:5000/Alarm', {
+      const response = await axios.post('http://192.168.232.148:5000/Alarm', {
         Alarm: true,
       });
       console.log('서버 응답:', response.data);
@@ -108,6 +109,19 @@ const HomeScreen: React.FC = () => {
     }
   };
 
+  const openAi = async () => {
+    try {
+      const response = await axios.get('http://192.168.232.148:5000/run-openai');
+      if (response.data.error) {
+        console.error('Error from Python script:', response.data.error);
+        return;
+      }
+      console.log('Python script output:', response.data.output);
+    } catch (error) {
+      console.error('Failed to call Flask server:', error);
+    }
+  };
+
   return (
     <View style={styles.homeScreenContainer}>
       <Image
@@ -134,6 +148,11 @@ const HomeScreen: React.FC = () => {
           )}
         </View>
       </View>
+      <TouchableOpacity style={styles.openai} onPress={openAi}>
+      <Image
+        source={require('../assets/png/dogBark.png')}
+        style={styles.openaiImage}/>
+      </TouchableOpacity>
       <Image
         source={require('../assets/png/homealarm.png')}
         style={styles.homeAlarmImage}

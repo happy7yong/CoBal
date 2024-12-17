@@ -61,13 +61,13 @@ export const styles = StyleSheet.create({
         width:'70%',
         resizeMode: 'contain',
         right:51,
-        top:200,
+        top:180,
     },
     homeAlarmContainer:{ //이미지 말고 가장 큰 상자
         flexDirection: 'row', // 수평으로 배치
         width:250,
-        right:55,
-        top:62,
+        right:58,
+        top:41,
         alignItems: 'center',
         justifyContent: 'center',
 //         backgroundColor: '#F5F7FA',
@@ -100,10 +100,10 @@ export const styles = StyleSheet.create({
             width:'80%',
             resizeMode: 'contain',
     },
-topNavi1:{
-    width:'80%',
-    resizeMode: 'contain',
-    alignItems:'center',
+    topNavi1:{
+        width:'80%',
+        resizeMode: 'contain',
+        alignItems:'center',
 
     },
     alarmTextContainer:{
@@ -112,13 +112,12 @@ topNavi1:{
 
     },
     alarmMainText:{
-            fontSize:18,
+            fontSize:17,
             color: '#111111',
-            paddingBottom:1,
 
     },
     alarmSubText:{
-            fontSize:18,
+            fontSize:17,
             fontWeight:'bold',
             color: '#111111'
     },
@@ -126,12 +125,12 @@ topNavi1:{
 
 //메인알림 슬라이드
     dailyContainer:{
-        width:'90%',
+        width:'93%',
         borderRadius:42,
         borderColor: '#E7E7E7',
         borderWidth:1.5,
-        height: 200,
-        bottom: -110,
+        height: 170,
+        bottom: -60,
         backgroundColor:'#FFFFFF',
         padding:30,
 
@@ -159,7 +158,7 @@ topNavi1:{
 
     //메인inner
       inner: {
-        width: '70%',
+        width: '62%',
         height: '110%',
         backgroundColor: '#F6F6F6',
         borderRadius: 30,
@@ -172,20 +171,27 @@ topNavi1:{
 
       },
       dailyInner: {
-        padding:25,
+        padding:10,
         justifyContent: 'center',
         alignItems: 'center',
       },
       imageInner: {
         flexDirection: 'row',
         alignItems: 'center', // Y축 정렬
-        padding:10,
+        //paddingLeft:10,
       },
+  /*
+  imageSunflowerPa:{
+      width:'20px',
+      },*/
       SunFlowerImage: {
-        width: '42%',
-        height: '120%',
-        borderRadius: 100,
+          width:'30%',
+          height:'50%',
+        borderRadius: 200,
         marginRight: 10, // 이미지와 텍스트 사이의 여백
+        resizeMode:'cover'
+
+
       },
         dailyTextFont:{
 //             fontSize: 18,
@@ -222,6 +228,29 @@ topNavi1:{
         width: '50%',
         resizeMode: 'contain', // 이미지 비율 유지
     },
+    openai:{
+
+        justifyContent: 'center',
+        alignItems: 'center',
+        top:-50,
+        left:150,
+        width:50,
+        height:50,
+        borderRadius:50,
+        backgroundColor:'white',
+        borderWidth:1,
+        borderColor:'#E8E8E8',
+
+
+
+    },
+    openaiImage:{
+        width:'80%',
+        height:'60%',
+
+
+
+        },
 
        voiceIcon: {
            position: 'absolute',
@@ -245,11 +274,12 @@ topNavi1:{
 
          },
      dailyTextInner:{
-         width:'100%',
+         width:'70%',
+         height: '150%',
+         alignItems : 'center',
+         justifyContent: 'center',
 
         },
-
-
          recordButton: {
            width: 70,
            height: 70,
